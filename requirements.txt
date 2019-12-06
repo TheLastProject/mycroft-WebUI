@@ -1,0 +1,1 @@
+git+https://github.com/MycroftAI/mycroft-messagebus-client@fe9536b3202e653a0e0359dc3df0f6b353cb2ff5

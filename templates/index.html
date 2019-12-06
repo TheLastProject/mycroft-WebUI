@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mycroft WebUI</title>
+</head>
+<body>
+
+<div id="messages">
+        Loading messages...
+</div>
+
+<form action="/send_message" method="post">
+  <input type="text" name="message">
+  <input type="submit" value="Submit">
+</form> 
+
+<script>
+function getMessages() {
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let messages = "<ul>";
+            for (const message of JSON.parse(this.responseText)) {
+                messages = messages + "<li>" + message.data.utterance + "</li>";
+            };
+            messages = messages + "</ul>";
+            document.getElementById("messages").innerHTML = messages;
+        }
+    };
+    xmlhttp.open("GET", "messages", true);
+    xmlhttp.send(); 
+
+    setTimeout(getMessages, 1000);
+};
+setTimeout(getMessages, 1000);
+</script>
+
+</body>
+</html> 
