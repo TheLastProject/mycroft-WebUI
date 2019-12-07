@@ -33,11 +33,16 @@ class MessageHandler():
         MessageHandler.client.run_in_thread()
 
     @staticmethod
+    def _append_message(incoming, message):
+        MessageHandler.messages.append({'incoming': incoming, 'message': message})
+
+    @staticmethod
     def _receive_message(message):
-        MessageHandler.messages.append(json.loads(message.serialize()))
+        MessageHandler._append_message(True, json.loads(message.serialize())['data']['utterance'])
 
     @staticmethod
     def send_message(message):
+        MessageHandler._append_message(False, message)
         MessageHandler.client.emit(Message('recognizer_loop:utterance', {"utterances": [message], "lang": "en"}))
 
     @staticmethod

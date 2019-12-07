@@ -21,7 +21,7 @@ function getMessages() {
         if (this.readyState == 4 && this.status == 200) {
             let messages = "<ul>";
             for (const message of JSON.parse(this.responseText)) {
-                messages = messages + "<li>" + message.data.utterance + "</li>";
+                messages = messages + "<li>" + (message.incoming ? "Mycroft" : "You") + ": " + message.message + "</li>";
             };
             messages = messages + "</ul>";
             document.getElementById("messages").innerHTML = messages;
