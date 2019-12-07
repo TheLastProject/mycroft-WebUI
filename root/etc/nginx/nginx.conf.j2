@@ -7,7 +7,7 @@ http {
         listen *:8080;
 
         location / {
-            proxy_pass http://localhost:5000;
+            proxy_pass http://localhost:{{ INTERNAL_PORT }};
             auth_basic "Mycroft WebUI";
             auth_basic_user_file /config/.htpasswd;
         }

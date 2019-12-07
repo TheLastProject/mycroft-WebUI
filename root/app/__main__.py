@@ -68,4 +68,4 @@ def send_message():
 
 if __name__ == '__main__':
     MessageHandler.initialize()
-    app.run()
+    app.run(port=os.environ['INTERNAL_PORT'])
