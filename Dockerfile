@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-RUN apk --no-cache add git nginx
+RUN apk --no-cache add apache2-utils git nginx
 
 COPY root /
 
