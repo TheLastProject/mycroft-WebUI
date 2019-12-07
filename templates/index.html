@@ -4,7 +4,7 @@
 <title>Mycroft WebUI</title>
 <style>
 html, body {
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -14,7 +14,8 @@ html, body {
   height: 100%;
 }
 #messages {
-  flex-grow: 1;
+  flex: 1 auto;
+  overflow-y: auto;
 }
 #form {
   display: flex;
@@ -40,24 +41,33 @@ html, body {
 </div>
 
 <script>
+window.mycroft_webui_messages;
+
 function getMessages() {
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == window.mycroft_webui_messages) {
+                return;
+            };
+            window.mycroft_webui_messages = this.responseText;
+
             let messages = "<ul>";
             for (const message of JSON.parse(this.responseText)) {
                 messages = messages + "<li>" + (message.incoming ? "Mycroft" : "You") + ": " + message.message + "</li>";
             };
             messages = messages + "</ul>";
-            document.getElementById("messages").innerHTML = messages;
+            messageElement = document.getElementById("messages");
+            messageElement.innerHTML = messages;
+            messageElement.scroll(0, messageElement.scrollHeight);
         }
     };
     xmlhttp.open("GET", "messages", true);
     xmlhttp.send(); 
-
-    setTimeout(getMessages, 1000);
 };
-setTimeout(getMessages, 1000);
+
+setInterval(getMessages, 1000);
+getMessages();
 </script>
 
 </body>
