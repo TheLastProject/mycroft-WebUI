@@ -1,0 +1,23 @@
+events {
+    worker_connections 1024;
+}
+
+http {
+    server {
+        listen *:8080;
+
+        return 302 https://$host$request_uri:8443;
+    }
+
+    server {
+        listen *:8443 ssl;
+        ssl_certificate /config/nginx.crt;
+        ssl_certificate_key /config/nginx.key;
+
+        location / {
+            proxy_pass http://localhost:5000;
+            auth_basic "Mycroft WebUI";
+            auth_basic_user_file /config/.htpasswd;
+        }
+    }
+}

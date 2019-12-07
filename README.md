@@ -13,6 +13,9 @@ You will have to mount Docker's `/config` volume and put the following files in 
 #### .htpasswd
 [See here on how to create this file](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file).
 
+#### SSL
+If you place a nginx.crt and nginx.key file in the config directory, the container will automatically start using SSL.
+
 ## Build image
 Git pull this repository.
 

@@ -13,6 +13,7 @@ RUN chmod +x startup.sh \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 8080
+EXPOSE 8443
 
 VOLUME /config
 
