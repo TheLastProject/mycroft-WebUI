@@ -2,17 +2,42 @@
 <html>
 <head>
 <title>Mycroft WebUI</title>
+<style>
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#messages {
+  flex-grow: 1;
+}
+#form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+#form_message {
+  flex-grow: 1;
+}
+</style>
 </head>
 <body>
 
-<div id="messages">
-        Loading messages...
-</div>
+<div id="container">
+  <div id="messages">
+    Loading messages...
+  </div>
 
-<form action="/send_message" method="post">
-  <input type="text" name="message">
-  <input type="submit" value="Submit">
-</form> 
+  <form id="form" action="/send_message" method="post">
+    <input id="form_message" type="text" name="message">
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
 <script>
 function getMessages() {
