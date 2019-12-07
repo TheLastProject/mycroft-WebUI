@@ -5,30 +5,26 @@ A very simple WebUI for interacting with your Mycroft instance.
 This project needs the following configuration:
 
 ### Environment variables
-`MYCROFT_HOST`: Set to the IP address or hostname of your Mycroft instance. Please ensure port 8181 is ONLY accessible to this container.
-`ADMIN_USERNAME`: The username for the authentication dialog
-`ADMIN_PASSWORD`: The password for the authentication dialog
+- `MYCROFT_HOST`: Set to the IP address or hostname of your Mycroft instance. Please ensure port 8181 is ONLY accessible to this container.
+- `ADMIN_USERNAME`: The username for the authentication dialog
+- `ADMIN_PASSWORD`: The password for the authentication dialog
 
 If you wish, you could instead provide your own .htpasswd file. See Files below.
 
 ### Files
 No files are necessary, but this container exposes a /config directory which supports the following files:
-`nginx.crt`: SSL certificate
-`nginx.key`: SSL key
-`.htpasswd`: [Authentication file](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file)
+- `nginx.crt`: SSL certificate
+- `nginx.key`: SSL key
+- `.htpasswd`: [Authentication file](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file)
 
 If nginx.crt and nginx.key exist, the container will automatically start using SSL.
 
 If .htpasswd exists, it will be used instead of the ADMIN_USERNAME and ADMIN_PASSWORD environment variables.
 
-## Build image
-Git pull this repository.
+## Get image
+This image is available on [Docker Hub](https://hub.docker.com/r/thelastproject/mycroft-webui).
 
-```bash
-git clone https://github.com/TheLastProject/mycroft-webui.git
-```
-
-Build the docker image in the directory that you have checked out.
+Alternatively, you can build it yourself from the sources in this git repository:
 
 ```bash
 docker build -t mycroft-webui .
