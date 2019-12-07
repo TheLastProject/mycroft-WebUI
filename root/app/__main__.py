@@ -68,4 +68,4 @@ def send_message():
 
 if __name__ == '__main__':
     MessageHandler.initialize()
-    app.run(host='0.0.0.0')
+    app.run()

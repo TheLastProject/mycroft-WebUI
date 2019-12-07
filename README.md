@@ -1,7 +1,17 @@
 # Mycroft WebUI
 A very simple WebUI for interacting with your Mycroft instance.
 
-This project is configured through environment variables. Make sure to set MYCROFT_HOST to the hostname of your Mycroft instance.
+## Configuration
+This project needs the following configuration:
+
+### Environment variables
+`MYCROFT_HOST`: Set to the IP address or hostname of your Mycroft instance. Please ensure port 8181 is ONLY accessible to this container.
+
+### Files
+You will have to mount Docker's `/config` volume and put the following files in there:
+
+#### .htpasswd
+[See here on how to create this file](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/#creating-a-password-file).
 
 ## Build image
 Git pull this repository.
@@ -21,6 +31,7 @@ docker build -t mycroft-webui .
 ```bash
 docker run -d \
 -e MYCROFT_HOST=127.0.0.1 \
--p 5000:5000 \
+-v /your/config/directory/location:/config \
+-p 8080:8080 \
 --name mycroft-webui mycroft-webui
 ```
