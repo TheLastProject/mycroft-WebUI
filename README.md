@@ -38,7 +38,9 @@ docker run -d \
 -v /your/config/directory/location:/config \
 -p 8080:8080 \
 -p 8443:8443 \
+-e ADMIN_USERNAME=admin \
+-e ADMIN_PASSWORD=changeme \
 --name mycroft-webui mycroft-webui
 ```
 
-With the above configuration, the container will listen on port 8080 (HTTP) and, if you set up SSL, port 8443 (HTTPS).
+With the above configuration, the container will listen on port 8080 (HTTP) and, if you set up SSL, port 8443 (HTTPS). The username and password are visible in the command, but it is strongly recommended to change them.
