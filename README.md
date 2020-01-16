@@ -40,3 +40,5 @@ docker run -d \
 -p 8443:8443 \
 --name mycroft-webui mycroft-webui
 ```
+
+With the above configuration, the container will listen on port 8080 (HTTP) and, if you set up SSL, port 8443 (HTTPS).
