@@ -34,13 +34,14 @@ docker build -t mycroft-webui .
 
 ```bash
 docker run -d \
--e MYCROFT_HOST=127.0.0.1 \
+-e MYCROFT_HOST=host.docker.internal \
 -v /your/config/directory/location:/config \
 -p 8080:8080 \
 -p 8443:8443 \
 -e ADMIN_USERNAME=admin \
 -e ADMIN_PASSWORD=changeme \
+--add-host host.docker.internal:host-gateway \
 --name mycroft-webui mycroft-webui
 ```
 
-With the above configuration, the container will listen on port 8080 (HTTP) and, if you set up SSL, port 8443 (HTTPS). The username and password are visible in the command, but it is strongly recommended to change them.
+With the above configuration, the container will connect to a mycroft instance on the host. The web UI will listen on port 8080 (HTTP) and, if you set up SSL, port 8443 (HTTPS). The username and password are visible in the command, but it is strongly recommended to change them.
